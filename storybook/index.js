@@ -1,10 +1,11 @@
 // if you use expo remove this line
-import {AppRegistry} from 'react-native';
-import {loadStories} from './storyLoader';
-import {getStorybookUI, configure, addDecorator} from '@storybook/react-native';
-import {withKnobs} from '@storybook/addon-knobs';
-
 import './rn-addons';
+
+import {withKnobs} from '@storybook/addon-knobs';
+import {addDecorator, configure, getStorybookUI} from '@storybook/react-native';
+import {AppRegistry} from 'react-native';
+
+import {loadStories} from './storyLoader';
 
 // enables knobs for all stories
 addDecorator(withKnobs);
