@@ -1,8 +1,10 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {GestureResponderEvent, Pressable, StyleSheet, View} from 'react-native';
 
 import {GoogleLogo, KakaoLogo, NaverLogo} from '../../../assets/svgs';
 import Colors from '../../../constants/Color';
+import {LoginScreenProps} from '../../../screen/LoginScreen';
 
 interface ICirecleButton {
   logo: 'google' | 'naver' | 'kakao';
@@ -15,10 +17,15 @@ const CircleButton = ({logo, onPress}: ICirecleButton) => {
     naver: <NaverLogo />,
     kakao: <KakaoLogo />,
   }[logo];
+
+  const navigation = useNavigation<LoginScreenProps['navigation']>();
+
   return (
     <View style={[styles.buttonContainer, styles[logo]]}>
       <Pressable
-        onPress={onPress}
+        onPress={() => {
+          navigation.navigate('WebView', {oauthProvider: logo});
+        }}
         style={({pressed}) => [
           styles.innerContainer,
           pressed && styles.pressed,

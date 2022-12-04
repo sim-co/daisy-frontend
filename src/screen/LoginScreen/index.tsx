@@ -1,11 +1,18 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {ReactElement} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 
+import {RootStackParamList} from '../../../App';
 import logo from '../../assets/pngs/logo.png';
 import ButtonContainer from './ButtonContainer';
 import Divider from './Divider';
 
-const LoginScreen = (): ReactElement => {
+export type LoginScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  'Login'
+>;
+
+const LoginScreen = ({}: LoginScreenProps): ReactElement => {
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
