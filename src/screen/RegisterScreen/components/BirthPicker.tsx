@@ -25,13 +25,14 @@ const BirthPicker = () => {
       onPress={() => {
         Picker.init({
           pickerData: dateData,
+          selectedValue: [year, month, date],
           pickerTitleText: '생년월일을 선택해주세요',
           pickerConfirmBtnText: '확인',
           pickerCancelBtnText: '취소',
           onPickerConfirm: birth => {
             setYear(birth[0]);
             setMonth(birth[1]);
-            setDate(birth[1]);
+            setDate(birth[2]);
           },
         });
         Picker.show();

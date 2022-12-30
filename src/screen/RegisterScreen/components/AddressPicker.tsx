@@ -215,6 +215,7 @@ const AddressPicker = () => {
       onPress={() => {
         Picker.init({
           pickerData: localData,
+          selectedValue: [region, city],
           pickerTitleText: '거주지를 선택해주세요.',
           pickerConfirmBtnText: '확인',
           pickerCancelBtnText: '취소',
