@@ -9,6 +9,8 @@ const Colors = {
   GREY_SECONDARY: '#CACACA',
   GREY_TERTIANARY: '#8D8D8D',
   GREY_QUATERNARY: '#B4B4B4',
+
+  ORANGE_PRIMARY: '#F2A309',
 };
 
 export default Colors;

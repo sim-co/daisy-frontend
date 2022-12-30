@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import Colors from '../../../constants/Color';
 import Button from './Button';
+import Title from './Title';
 
 const GenderInput = () => {
   const [gender, setGender] = useState<string>('');
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>성별*</Text>
+      <Title text="성별" isRequired={true} />
       <View style={styles.buttonContainer}>
         <Button onPress={setGender} selectedValue={gender} text="남성" />
         <Button onPress={setGender} selectedValue={gender} text="여성" />

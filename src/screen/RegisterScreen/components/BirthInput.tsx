@@ -1,12 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
+import Colors from '../../../constants/Color';
 import BirthPicker from './BirthPicker';
+import Title from './Title';
 
 const BirthInput = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>생년월일*</Text>
+      <Title text="생년월일" isRequired={true} />
       <BirthPicker />
     </View>
   );
@@ -18,10 +20,14 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     height: 72,
   },
-  title: {
-    alignSelf: 'flex-start',
+  required: {color: Colors.ORANGE_PRIMARY, fontSize: 20},
+  text: {
     fontFamily: 'Pretendard-SemiBold',
     fontSize: 18,
+  },
+  title: {
+    alignSelf: 'flex-start',
+    flexDirection: 'row',
   },
 });
 

@@ -1,12 +1,13 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import AddressPicker from './AddressPicker';
+import Title from './Title';
 
 const AddressInput = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>거주지*</Text>
+      <Title text="거주지" isRequired={true} />
       <AddressPicker />
     </View>
   );

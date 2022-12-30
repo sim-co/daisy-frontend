@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 
 import Colors from '../../../constants/Color';
+import Title from './Title';
 
 const NameInput = () => {
   const [input, setInput] = useState('');
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>닉네임*</Text>
+      <Title text="닉네임" isRequired={true} />
       <TextInput
         style={styles.nameInput}
         placeholder="이름을 입력해주세요"
