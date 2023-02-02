@@ -6,12 +6,12 @@ import {GoogleLogo, KakaoLogo, NaverLogo} from '../../../assets/svgs';
 import Colors from '../../../constants/Color';
 import {LoginScreenProps} from '../../../screen/LoginScreen';
 
-interface ICirecleButton {
+interface ILoginButton {
   logo: 'google' | 'naver' | 'kakao';
   onPress?: (event: GestureResponderEvent) => void;
 }
 
-const CircleButton = ({logo, onPress}: ICirecleButton) => {
+const LoginButton = ({logo}: ILoginButton) => {
   const SVG = {
     google: <GoogleLogo />,
     naver: <NaverLogo />,
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CircleButton;
+export default LoginButton;

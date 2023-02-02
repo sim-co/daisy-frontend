@@ -1,7 +1,7 @@
 import React, {ReactElement} from 'react';
 import {StyleProp, StyleSheet, TextStyle, View} from 'react-native';
 
-import CircleButton from '../../../components/ui/buttons/CircleButton';
+import LoginButton from '../../../components/ui/buttons/LoginButton';
 
 interface IButtonContainer {
   style?: StyleProp<TextStyle>;
@@ -10,9 +10,9 @@ interface IButtonContainer {
 const ButtonContainer = ({style}: IButtonContainer): ReactElement => {
   return (
     <View style={[styles.buttonContainer, style]}>
-      <CircleButton logo="kakao" />
-      <CircleButton logo="naver" />
-      <CircleButton logo="google" />
+      <LoginButton logo="kakao" />
+      <LoginButton logo="naver" />
+      <LoginButton logo="google" />
     </View>
   );
 };
