@@ -16,6 +16,19 @@
 
 #import <react/config/ReactNativeConfig.h>
 
+#import <NaverThirdPartyLogin/NaverThirdPartyLoginConnection.h>
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+  // naver
+  if ([url.scheme isEqualToString:@"{{ CUSTOM URL SCHEME }}"]) {
+    return [[NaverThirdPartyLoginConnection getSharedInstance] application:application openURL:url options:options];
+  }
+  
+}
+
+
 static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 
 @interface AppDelegate () <RCTCxxBridgeDelegate, RCTTurboModuleManagerDelegate> {
