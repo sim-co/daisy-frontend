@@ -1,11 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import {Token} from '../util/asyncstorage';
-
-export interface AuthState {
-  isAuthenticated: boolean;
+export interface Token {
   accessToken: string | null;
   refreshToken: string | null;
+}
+export interface AuthState extends Token {
+  isAuthenticated: boolean;
 }
 
 const initialState: AuthState = {

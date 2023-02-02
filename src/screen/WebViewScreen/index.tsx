@@ -1,20 +1,20 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {Alert, SafeAreaView, StyleSheet} from 'react-native';
 import {WebView} from 'react-native-webview';
 import {WebViewNavigation} from 'react-native-webview/lib/WebViewTypes';
 
 import {AuthStackParamList} from '../../../App';
 import {login} from '../../redux/AuthSlice';
 import {useAppDispatch} from '../../redux/hooks';
-import {storeToken} from '../../util/asyncstorage';
+import parseToken from '../../util/parseToken';
 
 export type WebViewScreenProps = NativeStackScreenProps<
   AuthStackParamList,
   'WebView'
 >;
 
-const WebViewScreen = ({route}: WebViewScreenProps) => {
+const WebViewScreen = ({route, navigation}: WebViewScreenProps) => {
   const dispatch = useAppDispatch();
   const {oauthProvider} = route.params;
   const oauthUri = {
@@ -24,15 +24,18 @@ const WebViewScreen = ({route}: WebViewScreenProps) => {
   }[oauthProvider];
 
   const handleNavigationStateChange = (naviagtionState: WebViewNavigation) => {
-    const url = naviagtionState.url;
-    if (!url.includes('access=')) {
+    const tokens = parseToken(naviagtionState.url);
+    if (!tokens) {
+      Alert.alert('로그인에 실패했습니다');
+      navigation.navigate('Login');
       return;
     }
-    const [accessToken, refreshToken] = url
-      .split('access=')[1]
-      .split('refresh=');
-    storeToken({accessToken, refreshToken});
-    dispatch(login({accessToken, refreshToken}));
+    dispatch(
+      login({
+        accessToken: tokens.accessToken,
+        refreshToken: tokens.refreshToken,
+      }),
+    );
   };
 
   return (
