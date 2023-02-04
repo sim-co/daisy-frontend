@@ -18,3 +18,7 @@ export const getToken = (): Token => {
   }
   return JSON.parse(jsonObject);
 };
+
+export const removeToken = () => {
+  storage.delete('token');
+};

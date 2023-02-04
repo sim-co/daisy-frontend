@@ -11,7 +11,7 @@ import LoginScreen from './src/screen/LoginScreen';
 import MainScreen from './src/screen/MainScreen';
 import RegisterScreen from './src/screen/RegisterScreen';
 import WebViewScreen from './src/screen/WebViewScreen';
-import {getToken, storeToken} from './src/util/storage';
+import {getToken, removeToken, storeToken} from './src/util/storage';
 import StorybookUI from './storybook';
 
 export type AuthStackParamList = {
@@ -26,11 +26,15 @@ export type UserStackParamList = {
 
 store.subscribe(() => {
   const {
-    auth: {accessToken, refreshToken},
+    auth: {accessToken, refreshToken, isAuthenticated},
   } = store.getState();
 
   if (accessToken && refreshToken) {
     storeToken({accessToken, refreshToken});
+  }
+
+  if (!isAuthenticated) {
+    removeToken();
   }
 });
 
