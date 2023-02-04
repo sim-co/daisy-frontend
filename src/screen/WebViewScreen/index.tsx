@@ -24,24 +24,27 @@ const WebViewScreen = ({route, navigation}: WebViewScreenProps) => {
   }[oauthProvider];
 
   const handleNavigationStateChange = (naviagtionState: WebViewNavigation) => {
-    const tokens = parseToken(naviagtionState.url);
-    if (!tokens) {
-      Alert.alert('로그인에 실패했습니다');
-      navigation.navigate('Login');
-      return;
+    if (naviagtionState.url.includes('access')) {
+      const tokens = parseToken(naviagtionState.url);
+      if (!tokens) {
+        Alert.alert('로그인에 실패했습니다');
+        navigation.navigate('Login');
+        return;
+      }
+      dispatch(
+        login({
+          accessToken: tokens.accessToken,
+          refreshToken: tokens.refreshToken,
+        }),
+      );
     }
-    dispatch(
-      login({
-        accessToken: tokens.accessToken,
-        refreshToken: tokens.refreshToken,
-      }),
-    );
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <WebView
         source={{uri: `${oauthUri}`}}
+        cacheEnabled={false}
         onNavigationStateChange={handleNavigationStateChange}
       />
     </SafeAreaView>
